@@ -14,8 +14,8 @@ export default function ClientRegister() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     let data = new FormData();
+
     data.append("name", name);
     data.append("email", email);
     data.append("password", password);

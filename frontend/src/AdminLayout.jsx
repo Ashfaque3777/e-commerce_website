@@ -1,6 +1,6 @@
-import AdminNavbar from "./adminPanel/AdminNavbar";
-import { Outlet } from "react-router-dom";
 import UserContextProvider from "./context/UserContextProvider";
+import { Outlet } from "react-router-dom";
+import AdminNavbar from "./adminPanel/AdminNavbar";
 
 export default function AdminLayout() {
   return (

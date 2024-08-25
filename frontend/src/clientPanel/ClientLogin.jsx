@@ -5,6 +5,7 @@ import userContext from "../context/userContext";
 
 export default function ClientLogin() {
   let navigation = useNavigate();
+  let { setIsClientLogin, clientLogin } = useContext(userContext);
 
   let [data, setData] = useState({
     email: "",
@@ -16,8 +17,6 @@ export default function ClientLogin() {
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
   }
-
-  let { setIsClientLogin, clientLogin } = useContext(userContext);
 
   async function handleSubmit(e) {
     e.preventDefault();

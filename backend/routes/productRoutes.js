@@ -1,14 +1,9 @@
 const express = require("express");
-let upload = require("../multerConfig.js");
-let productController = require("../controller/productController.js");
-
 const router = express.Router();
+let productController = require("../controller/productController.js");
+let upload = require("../multerConfig.js");
 
-router.post(
-  "/saveProduct",
-  upload.single("image"),
-  productController.saveProduct
-);
+router.post("/saveProduct", upload.single("image"), productController.saveProduct);
 router.get("/getProduct", productController.getProduct);
 router.delete("/deleteProduct/:id", productController.deleteProduct);
 router.get("/getProductById/:id", productController.getProductById);

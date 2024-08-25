@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Home() {
-  let navigation = useNavigate();
-
-  let { auth } = useContext(userContext);
-
   let [data, setData] = useState([]);
+  let [inp, setInp] = useState("");
+  let navigation = useNavigate();
+  let { setCartList, auth } = useContext(userContext);
 
   async function allData() {
     let result = await axios.get("http://localhost:240/api/getProduct");
@@ -68,7 +67,6 @@ export default function Home() {
     }
   }
 
-  let { setCartList } = useContext(userContext);
   async function getCart() {
     if (auth.user) {
       let userName = auth.user.email.split("@")[0];
@@ -79,13 +77,13 @@ export default function Home() {
     }
   }
 
-  let [inp, setInp] = useState("");
   async function handleInp() {
     let result = await axios.get(
       `http://localhost:240/api/searchProduct/${inp}`
     );
     setData(result.data);
   }
+
   useEffect(() => {
     if (inp == "") {
       allData();

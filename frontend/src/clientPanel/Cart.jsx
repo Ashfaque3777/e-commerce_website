@@ -6,7 +6,6 @@ import userContext from "../context/userContext";
 
 export default function Cart() {
   let [data, setData] = useState([]);
-
   let { setCartList, auth } = useContext(userContext);
 
   async function getData() {
@@ -35,10 +34,7 @@ export default function Cart() {
     }
   }
 
-  let price = data.reduce(
-    (acc, current) => acc + JSON.parse(current.productPrice),
-    0
-  );
+  let price = data.reduce((acc, current) => acc + JSON.parse(current.productPrice), 0);
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col space-y-4 p-6 px-2 sm:p-10 sm:px-2">

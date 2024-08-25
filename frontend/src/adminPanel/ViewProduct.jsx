@@ -4,15 +4,16 @@ import { Link, useParams } from "react-router-dom";
 
 export default function ViewProduct() {
   let { id } = useParams();
-  
+
   let [data, setData] = useState([]);
-  
+
   async function getProductById() {
     let result = await axios.get(
       `http://localhost:240/api/getProductById/${id}`
     );
     setData(result.data);
   }
+
   useEffect(() => {
     getProductById();
   }, []);

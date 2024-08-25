@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateProduct() {
+  let { id } = useParams();
   let navigation = useNavigate();
 
   let [data, setData] = useState({
@@ -19,14 +20,13 @@ export default function UpdateProduct() {
     setData({ ...data, [e.target.name]: e.target.value });
   }
 
-  let { id } = useParams();
-  
   async function getProductById() {
     let result = await axios.get(
       `http://localhost:240/api/getProductById/${id}`
     );
     setData(result.data[0]);
   }
+
   useEffect(() => {
     getProductById();
   }, []);

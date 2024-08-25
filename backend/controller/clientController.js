@@ -19,10 +19,27 @@ exports.saveClient = async (req, res) => {
   db.query(sql, [value], (err, result) => {
     if (err) throw err;
     else {
-      res.send("Client Saved");
+      res.send("Client Saved", result);
     }
   });
 };
+
+function createClientTable(userName) {
+  let cartTableQuery = `CREATE TABLE if not exists ${userName} (
+      id INT NOT NULL AUTO_INCREMENT,
+      productType VARCHAR(255) NULL,
+      productBrand VARCHAR(255) NULL,
+      productPrice VARCHAR(255) NULL,
+      productRating VARCHAR(255) NULL,
+      image VARCHAR(255) NULL,
+      PRIMARY KEY (id));`;
+  db.query(cartTableQuery, (err, result) => {
+    if (err) throw err;
+    else {
+      console.log("client table created");
+    }
+  });
+}
 
 exports.loginClient = (req, res) => {
   let email = req.body.email;
@@ -67,20 +84,3 @@ exports.verify = (req, res) => {
     });
   }
 };
-
-function createClientTable(userName) {
-  let cartTableQuery = `CREATE TABLE if not exists ${userName} (
-      id INT NOT NULL AUTO_INCREMENT,
-      productType VARCHAR(255) NULL,
-      productBrand VARCHAR(255) NULL,
-      productPrice VARCHAR(255) NULL,
-      productRating VARCHAR(255) NULL,
-      image VARCHAR(255) NULL,
-      PRIMARY KEY (id));`;
-  db.query(cartTableQuery, (err, result) => {
-    if (err) throw err;
-    else {
-      console.log("client table created");
-    }
-  });
-}

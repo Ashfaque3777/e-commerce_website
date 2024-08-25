@@ -14,7 +14,6 @@ export default function AddProduct() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     let data = new FormData();
 
     data.append("productType", productType);

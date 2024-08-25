@@ -12,7 +12,7 @@ exports.saveProduct = (req, res) => {
   db.query(sql, [value], (err, result) => {
     if (err) throw err;
     else {
-      res.send("Product Saved");
+      res.send("Product Saved", result);
     }
   });
 };
@@ -33,7 +33,7 @@ exports.deleteProduct = (req, res) => {
   db.query(sql, [id], (err, result) => {
     if (err) throw err;
     else {
-      res.send("Product Deleted");
+      res.send("Product Deleted", result);
     }
   });
 };
@@ -56,7 +56,7 @@ exports.updateProduct = (req, res) => {
   db.query(sql, [newData, id], (err, result) => {
     if (err) throw err;
     else {
-      res.send("Product Updated");
+      res.send("Product Updated", result);
     }
   });
 };
@@ -64,7 +64,7 @@ exports.updateProduct = (req, res) => {
 exports.searchProduct = (req, res) => {
   let inp = req.params.inp;
   let sql = "select * from product where productType like ?";
-  db.query(sql, ['%' + inp + '%'], (err, result) => {
+  db.query(sql, ["%" + inp + "%"], (err, result) => {
     if (err) throw err;
     else {
       res.json(result);

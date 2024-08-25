@@ -33,6 +33,7 @@ export default function UserContextProvider({ children }) {
     let result = await axios.post("http://localhost:240/api/verify");
     setAuth((prevAuth) => ({ ...prevAuth, user: result.data[0] }));
   };
+
   useEffect(() => {
     let token = localStorage.getItem("token");
     if (token) {

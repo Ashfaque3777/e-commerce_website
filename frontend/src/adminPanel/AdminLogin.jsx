@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
   let navigation = useNavigate();
+  let { setIsAdminLogin } = useContext(userContext);
 
   let [data, setData] = useState({
     email: "",
@@ -18,8 +19,6 @@ export default function AdminLogin() {
   function handleChange(e) {
     setData({ ...data, [e.target.name]: e.target.value });
   }
-
-  let { setIsAdminLogin } = useContext(userContext);
 
   async function handleSubmit(e) {
     e.preventDefault();

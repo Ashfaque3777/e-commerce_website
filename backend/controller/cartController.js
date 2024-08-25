@@ -12,7 +12,7 @@ exports.saveCart = (req, res) => {
   db.query(sql, [value], (err, result) => {
     if (err) throw err;
     else {
-      res.send("Cart Saved");
+      res.send("Cart Saved", result);
     }
   });
 };
@@ -35,7 +35,7 @@ exports.deleteCart = (req, res) => {
   db.query(sql, [id], (err, result) => {
     if (err) throw err;
     else {
-      res.send("Product Deleted");
+      res.send("Product Deleted", result);
     }
   });
 };
