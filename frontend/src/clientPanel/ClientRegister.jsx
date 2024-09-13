@@ -2,6 +2,7 @@ import axios from "axios";
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function ClientRegister() {
   let navigation = useNavigate();
@@ -14,6 +15,7 @@ export default function ClientRegister() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     let data = new FormData();
 
     data.append("name", name);
@@ -22,13 +24,16 @@ export default function ClientRegister() {
     data.append("phone", phone);
     data.append("image", image);
 
-    await axios.post("http://localhost:240/api/saveClient", data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    navigation("/clientLogin");
+    try {
+      await axios.post("http://localhost:240/api/saveClient", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      navigation("/clientLogin");
+    } catch (error) {
+      toast.error("An error occurred. Please try again.");
+    }
   }
 
   return (
@@ -55,7 +60,7 @@ export default function ClientRegister() {
                       type="text"
                       placeholder="name"
                       id="name"
-                      name="productType"
+                      name="name"
                       onChange={(e) => setName(e.target.value)}
                     ></input>
                   </div>
@@ -74,7 +79,7 @@ export default function ClientRegister() {
                       type="email"
                       placeholder="email"
                       id="email"
-                      name="productBrand"
+                      name="email"
                       onChange={(e) => setEmail(e.target.value)}
                     ></input>
                   </div>
@@ -92,10 +97,10 @@ export default function ClientRegister() {
                   <div className="mt-2">
                     <input
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                      type="text"
+                      type="tel"
                       placeholder="number"
-                      id="password"
-                      name="productPrice"
+                      id="phone"
+                      name="phone"
                       onChange={(e) => setPhone(e.target.value)}
                     ></input>
                   </div>
@@ -113,10 +118,10 @@ export default function ClientRegister() {
                   <div className="mt-2">
                     <input
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                      type="text"
+                      type="password"
                       placeholder="password"
                       id="password"
-                      name="productRating"
+                      name="password"
                       onChange={(e) => setPassword(e.target.value)}
                     ></input>
                   </div>
@@ -137,7 +142,7 @@ export default function ClientRegister() {
                       type="file"
                       id="password"
                       name="image"
-                      accept="images/*"
+                      accept="image/*"
                       onChange={(e) => setImage(e.target.files[0])}
                     ></input>
                   </div>

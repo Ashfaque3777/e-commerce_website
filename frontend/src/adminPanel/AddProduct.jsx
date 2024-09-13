@@ -11,9 +11,22 @@ export default function AddProduct() {
   let [productPrice, setproductPrice] = useState("");
   let [productRating, setproductRating] = useState("");
   let [image, setImage] = useState(null);
+  let [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (
+      !productType ||
+      !productBrand ||
+      !productPrice ||
+      !productRating ||
+      !image
+    ) {
+      setError("All fields are required.");
+      return;
+    }
+
     let data = new FormData();
 
     data.append("productType", productType);
@@ -22,13 +35,16 @@ export default function AddProduct() {
     data.append("productRating", productRating);
     data.append("image", image);
 
-    await axios.post("http://localhost:240/api/saveProduct", data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-
-    navigation("/admin");
+    try {
+      await axios.post("http://localhost:240/api/saveProduct", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      navigation("/admin");
+    } catch (err) {
+      setError("Failed to add product. Please try again.");
+    }
   }
 
   return (
@@ -45,6 +61,7 @@ export default function AddProduct() {
               className="mt-8"
               onSubmit={handleSubmit}
             >
+              {error && <p className="text-red-500">{error}</p>}
               <div className="space-y-5">
                 <div>
                   <label
