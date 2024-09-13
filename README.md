@@ -10,6 +10,7 @@ This project is a full-featured e-commerce web application built using **React.j
 - [API Endpoints](#api-endpoints)
 - [Usage](#usage)
 - [Folder Structure](#folder-structure)
+- [Live Demo](#live-demo)
 - [Future Enhancements](#future-enhancements)
 - [Contributing](#contributing)
 - [License](#license)
