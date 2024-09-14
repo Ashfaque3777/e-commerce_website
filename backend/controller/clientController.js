@@ -19,7 +19,7 @@ exports.saveClient = async (req, res) => {
   db.query(sql, [value], (err, result) => {
     if (err) throw err;
     else {
-      res.send("Client Saved", result);
+      res.send("Client Saved");
     }
   });
 };
