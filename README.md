@@ -187,7 +187,7 @@ backend/
 
 A live version of the application is available at the following link:
 
-**[Live Demo](https://infishop-197786.vercel.app)**
+**[Live Demo]()**
 
 Feel free to visit and explore the features, including:
 - Product browsing and filtering
